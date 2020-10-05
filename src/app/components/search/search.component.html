@@ -1,0 +1,6 @@
+<div class="row">
+    <div class="col">
+        <input #id type="text" (keyup)="buscar(id.value)" class="form-control" placeholder="Buscar producto..."> 
+    </div>
+</div>
+<app-product [items]="products"></app-product>

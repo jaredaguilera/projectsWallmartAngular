@@ -1,0 +1,13 @@
+
+<div class="card-columns m-4 animated fadeIn" center>
+    <div class="card puntero" *ngFor="let product of products | paginate : { itemsPerPage : 6, currentPage: p}">
+        <img src="https://{{product.image}}" class="card-img-top" width="100" height="100" >
+        <div class="card-body">
+        <h3 class="card-title">{{product.priceLowered | currency:'CLP $ ':'symbol':'3.0'}}</h3>
+        <h5 class="card-title">{{product.price | currency:'CLP $ ':'symbol':'3.0'}}</h5>
+        <p class="card-text"><small class="text-muted">{{product.brand}}</small></p>
+        <p class="card-text"><small class="text-muted">{{product.description}}</small></p>
+        </div>
+    </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
