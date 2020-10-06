@@ -14,17 +14,20 @@ export class SearchComponent implements OnInit {
   loading:boolean;
   mensajeError:string;
 
+
   constructor(private productservice : ProductsService) {}
 
   buscar(id:string){
+    this.loading=true;
     if (id.length<=3) {
-
+     
       this.productservice.getProductsById(id).subscribe((data:any)=>{
-        data.forEach(dato => {
-          dato.priceLowered = dato.price * 0.5;
-        });
-        this.products = data;
+        this.products = [];
+        data.priceLowered = data.price * 0.5;
+        this.products.push(data);
+        this.loading=false;
       },(errorServicio)=>{
+        this.loading=false;
         this.mensajeError=errorServicio.error.error.message;
       });
 
@@ -36,7 +39,9 @@ export class SearchComponent implements OnInit {
         });
         let datosFiltrados = datas.filter(data => data.brand.includes(id) || data.description.includes(id));
         this.products = datosFiltrados;
+        this.loading=false;
       },(errorServicio)=>{
+        this.loading=false;
         this.mensajeError=errorServicio.error.error.message;
       });
 

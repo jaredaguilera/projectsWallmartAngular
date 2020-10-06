@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 // Services
 import { ProductsService } from './services/productsService';
@@ -27,7 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DomSeguroPipe,
     SearchComponent,
     NavbarComponent,
-    ProductComponent
+    ProductComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

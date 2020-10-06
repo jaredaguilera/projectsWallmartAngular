@@ -3,4 +3,5 @@
         <input #id type="text" (keyup)="buscar(id.value)" class="form-control" placeholder="Buscar producto..."> 
     </div>
 </div>
-<app-product [items]="products"></app-product>
+<app-loading *ngIf="loading"></app-loading>
+<app-product *ngIf="!loading" [items]="products"></app-product>
