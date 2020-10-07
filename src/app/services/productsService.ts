@@ -11,17 +11,17 @@ export class ProductsService {
   }
 
   getQuery(query: string) {
-    const url = `http://localhost:8888/products/${query}`;
+    const url = `https://api-wallmart-products.herokuapp.com/${query}`;
     return this.http.get(url);
   }
 
   getProducts(){
-    return this.getQuery(`/getproducts`);
+    return this.getQuery(`products/getproducts`);
   }
 
   getProductsById(id: string) {
     console.log(id);
-    return this.getQuery(`getproductsbyid/${id}`);
+    return this.getQuery(`products/getproductsbyid/${id}`);
   }
 
   getproductsbybrand(brand: string) {
