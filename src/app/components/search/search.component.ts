@@ -19,14 +19,12 @@ export class SearchComponent implements OnInit {
 
   buscar(id: string) {
     this.loading = true;
-    this.productservice.getProductsById(id).subscribe((data: any) => {
-      this.products = [];
-      data.priceLowered = data.price * 0.5;
-      this.products.push(data);
+    this.productservice.getProductsById(id).subscribe((productList: any) => {
+      this.products = productList;
       this.loading = false;
     }, (errorServicio) => {
       this.loading = false;
-      this.mensajeError = errorServicio.error.error.message;
+      this.mensajeError = errorServicio.message;
     });
   };
 

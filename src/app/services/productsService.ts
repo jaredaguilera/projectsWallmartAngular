@@ -10,8 +10,8 @@ export class ProductsService {
     console.log('Service listo');
   }
 
-  getQuery(query: string) {
-    const url = `http://localhost:8888${query}`;
+  getQuery(query?: string) {
+    const url = `http://localhost:8888/products/${query?query:''}`;
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     });
@@ -19,6 +19,10 @@ export class ProductsService {
   }
 
   getProductsById(id?: string) {
-    return this.getQuery(`/${id}`);
+    if(id===undefined || id===null || id===''){
+      return this.getQuery();
+    }else{
+      return this.getQuery(`?id=${id}`);
+    }
   }
 }
