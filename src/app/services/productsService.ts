@@ -7,11 +7,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ProductsService {
 
   constructor(private http: HttpClient) {
-    console.log('Service listo');
   }
 
   getQuery(query?: string) {
-    const url = `http://localhost:8888/products/${query?query:''}`;
+    const url = `https://api-wallmart-products.herokuapp.com/products/${query?query:''}`;
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*'
     });

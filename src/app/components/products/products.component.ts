@@ -15,7 +15,6 @@ export class ProductsComponent implements OnInit {
   loading: boolean;
 
   constructor(private productsService: ProductsService) {
-    console.log('constructor');
   }
 
   ngOnInit(): void {
