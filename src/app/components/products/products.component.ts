@@ -19,9 +19,8 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let datosList:any[]=[];
     this.loading=true;
-    this.productsService.getProducts().subscribe((data : any) =>{
+    this.productsService.getProductsById().subscribe((data : any) =>{
       data.forEach(dato => {
         dato.priceLowered = dato.price * 0.5;
       });

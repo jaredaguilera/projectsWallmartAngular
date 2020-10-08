@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,14 @@ export class ProductsService {
   }
 
   getQuery(query: string) {
-    const url = `https://api-wallmart-products.herokuapp.com/${query}`;
-    return this.http.get(url);
+    const url = `http://localhost:8888${query}`;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    });
+    return this.http.get(url, { headers });
   }
 
-  getProducts(){
-    return this.getQuery(`products/getproducts`);
-  }
-
-  getProductsById(id: string) {
-    console.log(id);
-    return this.getQuery(`products/getproductsbyid/${id}`);
-  }
-
-  getproductsbybrand(brand: string) {
-    return this.getQuery(`getproductsbybrand/${brand}`);
+  getProductsById(id?: string) {
+    return this.getQuery(`/${id}`);
   }
 }

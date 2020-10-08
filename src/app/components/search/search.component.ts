@@ -10,42 +10,24 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class SearchComponent implements OnInit {
 
-  products : any [] = [];
-  loading:boolean;
-  mensajeError:string;
+  products: any[] = [];
+  loading: boolean;
+  mensajeError: string;
 
 
-  constructor(private productservice : ProductsService) {}
+  constructor(private productservice: ProductsService) { }
 
-  buscar(id:string){
-    this.loading=true;
-    if (id.length<=3) {
-     
-      this.productservice.getProductsById(id).subscribe((data:any)=>{
-        this.products = [];
-        data.priceLowered = data.price * 0.5;
-        this.products.push(data);
-        this.loading=false;
-      },(errorServicio)=>{
-        this.loading=false;
-        this.mensajeError=errorServicio.error.error.message;
-      });
-
-    }else{
-
-      this.productservice.getProducts().subscribe((datas : any) =>{
-        datas.forEach(dato => {
-          dato.priceLowered = dato.price * 0.5;
-        });
-        let datosFiltrados = datas.filter(data => data.brand.includes(id) || data.description.includes(id));
-        this.products = datosFiltrados;
-        this.loading=false;
-      },(errorServicio)=>{
-        this.loading=false;
-        this.mensajeError=errorServicio.error.error.message;
-      });
-
-    }
+  buscar(id: string) {
+    this.loading = true;
+    this.productservice.getProductsById(id).subscribe((data: any) => {
+      this.products = [];
+      data.priceLowered = data.price * 0.5;
+      this.products.push(data);
+      this.loading = false;
+    }, (errorServicio) => {
+      this.loading = false;
+      this.mensajeError = errorServicio.error.error.message;
+    });
   };
 
   ngOnInit(): void {
